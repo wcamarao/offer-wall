@@ -38,10 +38,16 @@
         <button class="btn btn-primary" type="button" ng-click="ctrl.search()">Search</button>
       </form>
 
-      <h3 ng-hide="ctrl.hasOffers()">No offers available</h3>
+      <div ng-hide="ctrl.isLoading || ctrl.hasOffers()">
+        <h3>No offers available</h3>
+        <p>{{ctrl.message}}</p>
+        <a href="" ng-click="ctrl.retry()">Retry</a>
+      </div>
 
       <div ng-show="ctrl.hasOffers()">
-        <h3>Showing all offers</h3>
+        <h3>Showing {{ctrl.totalOffersCount}} offers <small>page {{ctrl.searchModel.page}} of {{ctrl.totalPages}}</small></h3>
+
+        <div class="offer-table-nav-top" ng-include="'/js/offer-wall/offer-table-nav.html'"></div>
 
         <table class="table table-striped offer-table">
           <thead>
@@ -59,6 +65,8 @@
             </tr>
           </tbody>
         </table>
+
+        <div ng-include="'/js/offer-wall/offer-table-nav.html'"></div>
 
       </div>
     </div>

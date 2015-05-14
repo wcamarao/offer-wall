@@ -12,7 +12,7 @@
 }
 
 .offer-filters {
-  margin-bottom: 50px;
+  margin: 20px 0 50px;
 }
 
 .offer-table tbody tr td {
@@ -22,4 +22,8 @@
 
 .offer-thumbnail {
   width: 60px;
+}
+
+.offer-table-nav-top ul {
+  margin: 0;
 }
