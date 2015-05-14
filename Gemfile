@@ -4,6 +4,7 @@ ruby '2.1.2'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'rerun'
+gem 'rest-client'
 
 group :test, :development do
   gem 'rspec'
