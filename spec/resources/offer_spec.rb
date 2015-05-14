@@ -1,5 +1,4 @@
 require_relative File.join('..', 'spec_helper')
-require_relative File.join('..', '..', 'app/resources/offer')
 
 describe OfferWall::Resources::Offer do
   describe '#index' do
