@@ -1,0 +1,25 @@
+.loading {
+  opacity: .8;
+  pointer-events: none;
+}
+
+.loading-progress {
+  visibility: hidden;
+}
+
+.loading-progress.visible {
+  visibility: visible;
+}
+
+.offer-filters {
+  margin-bottom: 50px;
+}
+
+.offer-table tbody tr td {
+  vertical-align: middle;
+  height: 90px;
+}
+
+.offer-thumbnail {
+  width: 60px;
+}

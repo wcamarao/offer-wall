@@ -6,7 +6,7 @@ module OfferWall
 
       def self.registered(app)
         app.get '/offers' do
-          json OfferWall::Resources::Offer.index
+          json OfferWall::Resources::Offer.index(params)
         end
       end
 

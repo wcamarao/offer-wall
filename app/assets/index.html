@@ -6,52 +6,61 @@
     <meta charset="utf-8">
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/offer-wall.css">
 
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
     <script src="/js/app.js"></script>
     <script src="/js/offer-wall/offer-wall.controller.js"></script>
+    <script src="/js/offer-wall/offer-wall.service.js"></script>
   </head>
 
   <body>
-    <div class="container" ng-controller="OfferWallController as ctrl">
+    <div class="container" ng-controller="OfferWallController as ctrl" ng-class="{ loading: ctrl.isLoading }">
       <h1>Offer Wall</h1>
+
+      <div class="progress loading-progress" ng-class="{ visible: ctrl.isLoading }">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+      </div>
 
       <h3>Filter by</h3>
 
-      <form class="form-inline">
+      <form class="form-inline offer-filters">
         <div class="form-group">
           <label>uid</label>
-          <input class="form-control" type="text">
+          <input class="form-control" type="text" ng-model="ctrl.searchModel.uid">
         </div>
 
         <div class="form-group">
           <label>pub0</label>
-          <input class="form-control" type="text">
+          <input class="form-control" type="text" ng-model="ctrl.searchModel.pub0">
         </div>
 
-        <button class="btn btn-primary" type="button">Search</button>
+        <button class="btn btn-primary" type="button" ng-click="ctrl.search()">Search</button>
       </form>
 
-      <h3>Showing all offers</h3>
+      <h3 ng-hide="ctrl.hasOffers()">No offers available</h3>
 
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Thumbnail</th>
-            <th>Title</th>
-            <th>Payout</th>
-          </tr>
-        </thead>
+      <div ng-show="ctrl.hasOffers()">
+        <h3>Showing all offers</h3>
 
-        <tbody>
-          <tr ng-repeat="offer in ctrl.offers">
-            <td><img ng-src="{{offer.thumbnail.lowres}}"></td>
-            <td>{{offer.title}}</td>
-            <td>{{offer.payout | currency}}</td>
-          </tr>
-        </tbody>
-      </table>
+        <table class="table table-striped offer-table">
+          <thead>
+            <tr>
+              <th colspan="2">Offer</th>
+              <th class="text-right">Payout</th>
+            </tr>
+          </thead>
 
+          <tbody>
+            <tr ng-repeat="offer in ctrl.offers">
+              <td class="offer-thumbnail"><img ng-src="{{offer.thumbnail.lowres}}"></td>
+              <td>{{offer.title}}</td>
+              <td class="text-right">{{offer.payout | currency}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
     </div>
   </body>
 </html>
